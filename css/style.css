@@ -1,0 +1,47 @@
+.title {
+  font-size: 48px;
+  color: #000;
+  text-align: center;
+}
+
+.shuffle {
+  background-color: transparent;
+  color: #000;
+  padding: 7px;
+  font-size: 30px;
+  margin: 20px 28px 20px;
+}
+
+.shuffle:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.cardlist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card {
+  width: 250px;
+  height: 400px;
+  border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  .shuffle {
+    padding: 7px;
+    font-size: 40px;
+    margin: 20px 56px 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shuffle {
+    padding: 7px;
+    font-size: 40px;
+    margin: 20px 80px 20px;
+  }
+}
