@@ -1,4 +1,4 @@
-const colorBase = [
+export const colorBase = [
   'red',
   'blue',
   'green',
@@ -7,6 +7,10 @@ const colorBase = [
   'orange',
   'brown',
   'purple',
+  '#7fffd4',
+  '#008b8b',
+  '#a9a9a9',
+  '#87cefa',
+  '#4682b4',
+  '#901190',
 ];
-colorBase.push(...colorBase);
-export const colorCards = colorBase;

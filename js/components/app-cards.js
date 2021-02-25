@@ -1,17 +1,16 @@
 import RootElement from './app-rootelement.js';
 import PubSub from '../pubsub/pubsub.js';
-import { colorCards } from '../data/color-cards.js';
+import { colorBase } from '../data/color-cards.js';
 
-let data = colorCards;
+let data = colorBase;
 
 class appCards extends RootElement {
   constructor() {
     super();
     this.pubsub = PubSub;
-    this.data = data;
+    this.data = this.pubsub.getData('getCard', null);
     this.renderData(this.pubsub.getData('getCard', null));
     this.pubsub.subscribe('NewCard', 'getCard', null, this.renderData);
-    //this.checkMatch(this.pubsub.getData('getSelectedCard', null));
     this.pubsub.subscribe(
       'SelectedCard',
       'getSelectedCard',
@@ -70,11 +69,11 @@ class appCards extends RootElement {
   }
 
   shuffleCard() {
-    for (let i = data.length - 1; i > 0; i--) {
+    for (let i = this.data.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
-      [data[i], data[j]] = [data[j], data[i]];
+      [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
     }
-    this.pubsub.publish('NewCard', data);
+    this.pubsub.publish('NewCard', this.data);
   }
 }
 

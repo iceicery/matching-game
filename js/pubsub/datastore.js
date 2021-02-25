@@ -1,17 +1,10 @@
-import { colorCards } from '../data/color-cards.js';
-
-let data = colorCards;
-
-console.log(data);
-for (let i = data.length - 1; i > 0; i--) {
-  let j = Math.floor(Math.random() * (i + 1));
-  [data[i], data[j]] = [data[j], data[i]];
-}
-
+import { colorBase } from '../data/color-cards.js';
 class DataStore {
   constructor() {
-    this.card = data;
+    this.card = colorBase.slice(0, 8);
+    this.card.push(...this.card);
     this.selectedCard = [];
+    this.numberOfCards = 4;
   }
 
   getRequest(subscriber) {
@@ -22,6 +15,14 @@ class DataStore {
     let req = 'set' + request.newInfo;
     let res = this[req](request.data);
     return res;
+  }
+
+  setNumberOfCards(newData) {
+    this.numberOfCards = newData;
+  }
+
+  getNumberOfCards() {
+    return this.numberOfCards;
   }
 
   setSelectedCard(newData) {
@@ -36,13 +37,15 @@ class DataStore {
   }
 
   setNewCard(newData) {
-    console.log('setNewCard');
-    console.log(newData);
     this.card = newData;
-    console.log(this.card);
   }
 
   getCard() {
+    for (let i = this.card.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [this.card[i], this.card[j]] = [this.card[j], this.card[i]];
+    }
+    console.log(this.card);
     return this.card;
   }
 }
