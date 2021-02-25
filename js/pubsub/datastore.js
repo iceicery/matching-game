@@ -1,7 +1,7 @@
 import { colorBase } from '../data/color-cards.js';
 class DataStore {
   constructor() {
-    this.card = colorBase.slice(0, 8);
+    this.card = colorBase.slice(0, 4);
     this.card.push(...this.card);
     this.selectedCard = [];
     this.numberOfCards = 4;
@@ -41,6 +41,7 @@ class DataStore {
   }
 
   getCard() {
+    console.log(this.numberOfCards);
     for (let i = this.card.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [this.card[i], this.card[j]] = [this.card[j], this.card[i]];

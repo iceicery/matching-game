@@ -22,21 +22,19 @@ class appInput extends RootElement {
       <label for="Choice2" class="form__label">16</label>
   
       <input type="radio" id="Choice3"
-       name="number" value=16>
-      <label for="Choice3" class="form__label">32</label>
+       name="number" value=12>
+      <label for="Choice3" class="form__label">24</label>
     </div>
     <div>
-      <input type="submit" name="submit" value="Submit" class="form__button" value="Confirm">
+      <input type="submit" name="submit" class="form__button" value="Confirm">
     </div>
   </form>`;
     this.querySelector('.form').onsubmit = this.getRadioValue;
   }
   getRadioValue(e) {
     e.preventDefault();
-    // Get the selected score (assuming one was selected)
     var numberOfCards = document.querySelector('input[name="number"]:checked')
       .value;
-    console.log(numberOfCards);
     this.pubsub.publish('NumberOfCards', numberOfCards);
   }
 }

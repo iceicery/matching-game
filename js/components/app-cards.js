@@ -2,13 +2,11 @@ import RootElement from './app-rootelement.js';
 import PubSub from '../pubsub/pubsub.js';
 import { colorBase } from '../data/color-cards.js';
 
-let data = colorBase;
-
 class appCards extends RootElement {
   constructor() {
     super();
     this.pubsub = PubSub;
-    this.data = this.pubsub.getData('getCard', null);
+    this.data = colorBase;
     this.renderData(this.pubsub.getData('getCard', null));
     this.pubsub.subscribe('NewCard', 'getCard', null, this.renderData);
     this.pubsub.subscribe(
@@ -21,7 +19,7 @@ class appCards extends RootElement {
 
   renderData(cards) {
     this.innerHTML = `
-    <button class="shuffle">Shuffle</button>
+    <button class="shuffle">Start The Game!</button>
     <div id="cardlist" class="cardlist"></div>
         `;
     this.querySelector('.shuffle').addEventListener('click', this.shuffleCard);
@@ -69,11 +67,18 @@ class appCards extends RootElement {
   }
 
   shuffleCard() {
+    let numberOfCards = this.pubsub.getData('getNumberOfCards', null);
+    this.data = this.data.slice(0, numberOfCards);
+    this.data.push(...this.data);
     for (let i = this.data.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
     }
     this.pubsub.publish('NewCard', this.data);
+  }
+
+  showTheGame() {
+    this.pubsub.publish('isGameShow', true);
   }
 }
 
