@@ -42,7 +42,6 @@ class DataStore {
   }
 
   getCard() {
-    console.log(this.numberOfCards);
     for (let i = this.card.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [this.card[i], this.card[j]] = [this.card[j], this.card[i]];
