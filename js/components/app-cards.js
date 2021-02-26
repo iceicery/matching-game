@@ -7,8 +7,15 @@ class appCards extends RootElement {
     super();
     this.pubsub = PubSub;
     this.data = colorBase;
-    this.renderData(this.pubsub.getData('getCard', null));
+    this.renderData();
     this.pubsub.subscribe('NewCard', 'getCard', null, this.renderData);
+    this.pubsub.subscribe('CardText', 'getCardText', null, this.renderData);
+    this.pubsub.subscribe(
+      'ThemeOfCard',
+      'getThemeOfCard',
+      null,
+      this.renderData
+    );
     this.pubsub.subscribe(
       'SelectedCard',
       'getSelectedCard',
@@ -17,20 +24,30 @@ class appCards extends RootElement {
     );
   }
 
-  renderData(cards) {
+  renderData() {
     this.innerHTML = `
     <button class="shuffle">Start The Game!</button>
     <div id="cardlist" class="cardlist"></div>
         `;
     this.querySelector('.shuffle').addEventListener('click', this.shuffleCard);
+    var theme = this.pubsub.getData('getThemeOfCard', null);
+    var cards = this.pubsub.getData('getCard', null);
+    if (theme === 'text') {
+      cards = this.pubsub.getData('getCardText', null);
+    }
     cards.map((item, i) => {
       var card = document.createElement('div');
       card.className = 'card';
       card.id = `card-${i}`;
       card.style.backgroundColor = 'black';
-      console.log(item);
       card.addEventListener('click', () => {
-        card.style.backgroundColor = item;
+        if (theme === 'color') {
+          card.style.backgroundColor = item;
+        }
+        if (theme === 'text') {
+          card.style.backgroundColor = '#dcdcdc';
+          card.textContent = item;
+        }
         this.pubsub.publish('SelectedCard', { id: i, item });
         this.checkMatch;
       });
@@ -66,17 +83,27 @@ class appCards extends RootElement {
       this.pubsub.publish('SelectedCardBack', null);
     }
   }
-
   shuffleCard() {
     let numberOfCards = this.pubsub.getData('getNumberOfCards', null);
-    var data = this.data;
+    var theme = this.pubsub.getData('getThemeOfCard', null);
+    var cards = this.pubsub.getData('getCard', null);
+    var textcards = this.pubsub.getData('getCardText', null);
+    var data = cards;
+    if (theme === 'text') {
+      data = textcards;
+    }
     data = data.slice(0, numberOfCards);
     data.push(...data);
     for (let i = data.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [data[i], data[j]] = [data[j], data[i]];
     }
-    this.pubsub.publish('NewCard', data);
+    if (theme === 'color') {
+      this.pubsub.publish('NewCard', data);
+    }
+    if (theme === 'text') {
+      this.pubsub.publish('CardText', data);
+    }
   }
 
   showTheGame() {

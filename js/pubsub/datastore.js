@@ -1,11 +1,11 @@
-import { colorBase } from '../data/cards-data.js';
+import { colorBase, cardText } from '../data/cards-data.js';
 class DataStore {
   constructor() {
     this.card = colorBase;
-    this.card = this.card.slice(0, 4);
-    this.card.push(...this.card);
     this.selectedCard = [];
     this.numberOfCards = 4;
+    this.cardText = cardText;
+    this.themeOfCard = 'color';
   }
 
   getRequest(subscriber) {
@@ -26,6 +26,22 @@ class DataStore {
     return this.numberOfCards;
   }
 
+  setCardText(newData) {
+    this.cardText = newData;
+  }
+
+  getCardText() {
+    return this.cardText;
+  }
+
+  setThemeOfCard(newData) {
+    this.themeOfCard = newData;
+  }
+
+  getThemeOfCard() {
+    return this.themeOfCard;
+  }
+
   setSelectedCard(newData) {
     this.selectedCard.push(newData);
   }
@@ -40,12 +56,15 @@ class DataStore {
   setNewCard(newData) {
     this.card = newData;
   }
-
-  getCard() {
-    for (let i = this.card.length - 1; i > 0; i--) {
+  /*
+  shuffleCard(cards) {
+    for (let i = cards.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
-      [this.card[i], this.card[j]] = [this.card[j], this.card[i]];
+      [cards[i], cards[j]] = [cards[j], cards[i]];
     }
+    return cards;
+  }*/
+  getCard() {
     return this.card;
   }
 }

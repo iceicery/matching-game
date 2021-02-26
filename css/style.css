@@ -27,6 +27,12 @@
   font-size: 30px;
 }
 
+.form__textinput-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+
 .form__label {
   font-size: 30px;
 }
@@ -71,6 +77,9 @@
   width: auto;
   height: auto;
   border-radius: 10px;
+  text-align: center;
+  font-size: 100px;
+  padding: 30%;
 }
 
 @media (min-width: 768px) {
