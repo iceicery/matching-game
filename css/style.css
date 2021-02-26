@@ -8,12 +8,17 @@
   text-align: center;
 }
 
+.form__container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 .form {
   margin-right: auto;
   margin-left: auto;
   padding: 30px;
   border: solid #000;
-  width: 280px;
 }
 
 .form__title {
@@ -39,10 +44,9 @@
 .shuffle {
   background-color: transparent;
   color: #000;
-  padding: 10px;
+  padding: 20px;
   font-size: 30px;
   margin: 20px auto 20px;
-
   border-radius: 50px;
 }
 

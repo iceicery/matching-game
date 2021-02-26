@@ -1,6 +1,6 @@
 import RootElement from './app-rootelement.js';
 import PubSub from '../pubsub/pubsub.js';
-import { colorBase } from '../data/color-cards.js';
+import { colorBase } from '../data/cards-data.js';
 
 class appCards extends RootElement {
   constructor() {
@@ -28,6 +28,7 @@ class appCards extends RootElement {
       card.className = 'card';
       card.id = `card-${i}`;
       card.style.backgroundColor = 'black';
+      console.log(item);
       card.addEventListener('click', () => {
         card.style.backgroundColor = item;
         this.pubsub.publish('SelectedCard', { id: i, item });
@@ -68,13 +69,14 @@ class appCards extends RootElement {
 
   shuffleCard() {
     let numberOfCards = this.pubsub.getData('getNumberOfCards', null);
-    this.data = this.data.slice(0, numberOfCards);
-    this.data.push(...this.data);
-    for (let i = this.data.length - 1; i > 0; i--) {
+    var data = this.data;
+    data = data.slice(0, numberOfCards);
+    data.push(...data);
+    for (let i = data.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
-      [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
+      [data[i], data[j]] = [data[j], data[i]];
     }
-    this.pubsub.publish('NewCard', this.data);
+    this.pubsub.publish('NewCard', data);
   }
 
   showTheGame() {

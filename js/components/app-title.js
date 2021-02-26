@@ -7,8 +7,9 @@ class appTitle extends RootElement {
   }
   renderData() {
     this.innerHTML = `
-        <h1 class="title">Matching Game</h1>
-        `;
+        <h1 class="title"></h1>`;
+    var title = this.getAttribute('title');
+    document.querySelector('.title').textContent = title;
   }
 }
 
