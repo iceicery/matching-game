@@ -2,6 +2,8 @@ import { colorBase, cardText } from '../data/cards-data.js';
 class DataStore {
   constructor() {
     this.card = colorBase;
+    this.card = this.card.splice(0, 4);
+    this.card.push(...this.card);
     this.selectedCard = [];
     this.numberOfCards = 4;
     this.cardText = cardText;
@@ -56,15 +58,17 @@ class DataStore {
   setNewCard(newData) {
     this.card = newData;
   }
-  /*
+
   shuffleCard(cards) {
     for (let i = cards.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [cards[i], cards[j]] = [cards[j], cards[i]];
     }
     return cards;
-  }*/
+  }
+
   getCard() {
+    this.shuffleCard(this.card);
     return this.card;
   }
 }

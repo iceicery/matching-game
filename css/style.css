@@ -79,7 +79,7 @@
   border-radius: 10px;
   text-align: center;
   font-size: 100px;
-  padding: 30%;
+  padding: 30% 0;
 }
 
 @media (min-width: 768px) {
