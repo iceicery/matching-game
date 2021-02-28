@@ -17,9 +17,6 @@ class appThemeInput extends RootElement {
        name="theme" value="color" >
       <label for="Choice1" class="form__label">Color</label>
       <input type="radio" id="Choice2"
-       name="theme" value="text">
-      <label for="Choice2" class="form__label">Text</label>
-      <input type="radio" id="Choice3"
        name="theme" value="image">
       <label for="Choice3" class="form__label">Image</label>
     </div>

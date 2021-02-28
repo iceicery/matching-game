@@ -10,6 +10,7 @@ class appCards extends RootElement {
     this.renderData();
     this.pubsub.subscribe('NewCard', 'getCard', null, this.renderData);
     this.pubsub.subscribe('CardText', 'getCardText', null, this.renderData);
+    this.pubsub.subscribe('Image', 'getCardText', null, this.renderData);
     this.pubsub.subscribe(
       'ThemeOfCard',
       'getThemeOfCard',
@@ -35,6 +36,9 @@ class appCards extends RootElement {
     if (theme === 'text') {
       cards = this.pubsub.getData('getCardText', null);
     }
+    if (theme === 'image') {
+      cards = this.pubsub.getData('getImage', null);
+    }
     cards.map((item, i) => {
       var card = document.createElement('div');
       card.className = 'card';
@@ -47,6 +51,10 @@ class appCards extends RootElement {
         if (theme === 'text') {
           card.style.backgroundColor = '#dcdcdc';
           card.textContent = item;
+        }
+        if (theme === 'image') {
+          card.style.backgroundColor = '#dcdcdc';
+          card.style.backgroundImage = `url(${item})`;
         }
         this.pubsub.publish('SelectedCard', { id: i, item });
         this.checkMatch;
@@ -77,8 +85,14 @@ class appCards extends RootElement {
           `#card-${selectedCard[0].id}`
         ).style.backgroundColor = 'black';
         document.querySelector(
+          `#card-${selectedCard[0].id}`
+        ).style.backgroundImage = '';
+        document.querySelector(
           `#card-${selectedCard[1].id}`
         ).style.backgroundColor = 'black';
+        document.querySelector(
+          `#card-${selectedCard[1].id}`
+        ).style.backgroundImage = '';
       }, 500);
       this.pubsub.publish('SelectedCardBack', null);
     }
@@ -86,14 +100,19 @@ class appCards extends RootElement {
   shuffleCard() {
     let numberOfCards = this.pubsub.getData('getNumberOfCards', null);
     var theme = this.pubsub.getData('getThemeOfCard', null);
-    var cards = this.pubsub.getData('getCard', null);
-    var textcards = this.pubsub.getData('getCardText', null);
+    var cards = this.pubsub.getData('getOriginalCard', null);
+    var textcards = this.pubsub.getData('getOriginalCardText', null);
+    var images = this.pubsub.getData('getOriginalImage', null);
     var data = cards;
     if (theme === 'text') {
       data = textcards;
     }
+    if (theme === 'image') {
+      data = images;
+    }
     data = data.slice(0, numberOfCards);
     data.push(...data);
+
     for (let i = data.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [data[i], data[j]] = [data[j], data[i]];
@@ -103,6 +122,9 @@ class appCards extends RootElement {
     }
     if (theme === 'text') {
       this.pubsub.publish('CardText', data);
+    }
+    if (theme === 'image') {
+      this.pubsub.publish('Image', data);
     }
   }
 

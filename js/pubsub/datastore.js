@@ -1,12 +1,16 @@
-import { colorBase, cardText } from '../data/cards-data.js';
+import { colorBase, cardText, cardImgs } from '../data/cards-data.js';
 class DataStore {
   constructor() {
+    this.originCard = colorBase;
+    this.originalCardText = cardText;
+    this.originalImage = cardImgs;
     this.card = colorBase;
     this.card = this.card.splice(0, 4);
     this.card.push(...this.card);
     this.selectedCard = [];
     this.numberOfCards = 4;
-    this.cardText = cardText;
+    this.cardText = [];
+    this.image = [];
     this.themeOfCard = 'color';
   }
 
@@ -67,9 +71,33 @@ class DataStore {
     return cards;
   }
 
+  getOriginalCard() {
+    return this.originCard;
+  }
+
+  setOriginalCardText(newData) {
+    this.originalCardText = newData;
+  }
+
+  getOriginalCardText() {
+    return this.originalCardText;
+  }
+
   getCard() {
     this.shuffleCard(this.card);
     return this.card;
+  }
+
+  getOriginalImage() {
+    return this.originalImage;
+  }
+
+  setImage(newData) {
+    this.image = newData;
+  }
+
+  getImage() {
+    return this.image;
   }
 }
 

@@ -80,6 +80,8 @@
   text-align: center;
   font-size: 100px;
   padding: 30% 0;
+  object-fit: contain;
+  background-position: center;
 }
 
 @media (min-width: 768px) {

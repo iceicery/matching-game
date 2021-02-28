@@ -39,7 +39,8 @@ class appInputText extends RootElement {
     for (var i = 0; i < 12; i++) {
       inputValue.push(input[i].value);
     }
-    this.pubsub.publish('CardText', inputValue);
+    this.pubsub.publish('OriginalCardText', inputValue);
+    this.pubsub.publish('ThemeOfCard', 'text');
   }
 }
 
