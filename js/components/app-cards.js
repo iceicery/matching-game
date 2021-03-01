@@ -29,6 +29,7 @@ class appCards extends RootElement {
     this.innerHTML = `
     <button class="shuffle">Start The Game!</button>
     <div id="cardlist" class="cardlist"></div>
+    
         `;
     this.querySelector('.shuffle').addEventListener('click', this.shuffleCard);
     var theme = this.pubsub.getData('getThemeOfCard', null);
@@ -64,6 +65,8 @@ class appCards extends RootElement {
   }
 
   checkMatch(selectedCard) {
+    var matchedNumber = this.pubsub.getData('getMatchedNumber', null);
+    var roundNumber = this.pubsub.getData('getRoundNumber', null);
     if (
       selectedCard.length === 2 &&
       selectedCard[0].item === selectedCard[1].item
@@ -75,6 +78,8 @@ class appCards extends RootElement {
         `#card-${selectedCard[1].id}`
       ).style.pointerEvents = 'none';
       this.pubsub.publish('SelectedCardBack', null);
+      this.pubsub.publish('MatchedNumber', matchedNumber + 1);
+      this.pubsub.publish('RoundNumber', roundNumber + 1);
     }
     if (
       selectedCard.length === 2 &&
@@ -95,6 +100,7 @@ class appCards extends RootElement {
         ).style.backgroundImage = '';
       }, 500);
       this.pubsub.publish('SelectedCardBack', null);
+      this.pubsub.publish('RoundNumber', roundNumber + 1);
     }
   }
   shuffleCard() {
@@ -104,6 +110,8 @@ class appCards extends RootElement {
     var textcards = this.pubsub.getData('getOriginalCardText', null);
     var images = this.pubsub.getData('getOriginalImage', null);
     var data = cards;
+    this.pubsub.publish('MatchedNumber', 0);
+    this.pubsub.publish('RoundNumber', 0);
     if (theme === 'text') {
       data = textcards;
     }

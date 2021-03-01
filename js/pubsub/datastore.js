@@ -8,6 +8,8 @@ class DataStore {
     this.card = this.card.splice(0, 4);
     this.card.push(...this.card);
     this.selectedCard = [];
+    this.matchedNumber = 0;
+    this.roundNumber = 0;
     this.numberOfCards = 4;
     this.cardText = [];
     this.image = [];
@@ -57,6 +59,22 @@ class DataStore {
 
   getSelectedCard() {
     return this.selectedCard;
+  }
+
+  setRoundNumber(newData) {
+    this.roundNumber = newData;
+  }
+
+  getRoundNumber() {
+    return this.roundNumber;
+  }
+
+  setMatchedNumber(newData) {
+    this.matchedNumber = newData;
+  }
+
+  getMatchedNumber() {
+    return this.matchedNumber;
   }
 
   setNewCard(newData) {

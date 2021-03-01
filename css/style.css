@@ -4,6 +4,7 @@
 .body {
   width: 100%;
   font-family: 'nunito', Arial, Helvetica, sans-serif;
+  position: relative;
 }
 
 .title {
@@ -87,7 +88,7 @@
   width: 95%;
   margin-right: auto;
   margin-left: auto;
-  height: 85vh;
+  height: 75vh;
   display: grid;
   flex-wrap: wrap;
   grid-template-columns: repeat(4, 1fr);
@@ -105,6 +106,32 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.result-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result {
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.result__done {
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+}
+.result__done-img {
+  width: 50px;
+}
+
+.result__done-container {
+  display: flex;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
