@@ -134,7 +134,38 @@
   justify-content: center;
 }
 
+.footer {
+  padding: 20px;
+  border-top: solid gray 0.5px;
+}
+
+.footer-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer__icon {
+  width: 20px;
+}
+
+a:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.footer__text {
+  color: #000;
+  text-decoration: none;
+  font-weight: 300;
+}
+
 @media (min-width: 768px) {
+  .body {
+    width: auto;
+    padding: 0 48px;
+  }
   .cardlist {
     gap: 8px;
   }
@@ -149,6 +180,11 @@
 }
 
 @media (min-width: 1024px) {
+  .body {
+    width: auto;
+    padding: 0 80px;
+  }
+
   .title {
     font-size: 56px;
   }

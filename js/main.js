@@ -6,3 +6,4 @@ import './components/app-input.js';
 import './components/app-input-text.js';
 import './components/app-input-theme.js';
 import './components/app-result.js';
+import './components/app-footer.js';
