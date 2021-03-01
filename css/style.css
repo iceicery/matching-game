@@ -13,6 +13,11 @@
   font-weight: 700;
 }
 
+.subtitle {
+  font-size: 20px;
+  padding: 10px;
+}
+
 .form__container {
   padding: 0 10px;
   display: flex;
@@ -103,6 +108,12 @@
 }
 
 @media (min-width: 768px) {
+  .cardlist {
+    gap: 8px;
+  }
+  .card {
+    border-radius: 10px;
+  }
   .shuffle {
     padding: 7px;
     font-size: 40px;
