@@ -100,8 +100,8 @@
   width: auto;
   height: auto;
   text-align: center;
-  font-size: 100px;
-  padding: 30% 0;
+  font-size: 25px;
+  /*padding: 30% 0;*/
   object-fit: contain;
   background-size: cover;
   background-position: center;
@@ -171,6 +171,7 @@ a:hover {
   }
   .card {
     border-radius: 10px;
+    font-size: 35px;
   }
   .shuffle {
     padding: 7px;
@@ -183,6 +184,10 @@ a:hover {
   .body {
     width: auto;
     padding: 0 80px;
+  }
+
+  .card {
+    font-size: 50px;
   }
 
   .title {
