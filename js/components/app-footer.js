@@ -15,7 +15,7 @@ class appFooter extends RootElement {
                  <img src="../../image/linkedin.svg" alt="link to linkedin" class="footer__icon"/>
             </a>
             <a href="https://github.com/iceicery" target= _blank rel= noreferrer>
-                <img src="../../image/github.svg" alt="link to github" class="footer__icon"/>
+                <img src="../../../image/github.svg" alt="link to github" class="footer__icon"/>
             </a>
         </div>
         <p class="footer__text">Images from unsplash.com </p>
