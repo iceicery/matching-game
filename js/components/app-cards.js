@@ -135,10 +135,6 @@ class appCards extends RootElement {
       this.pubsub.publish('Image', data);
     }
   }
-
-  showTheGame() {
-    this.pubsub.publish('isGameShow', true);
-  }
 }
 
 customElements.define('app-cards', appCards);
