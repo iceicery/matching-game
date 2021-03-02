@@ -37,8 +37,7 @@ class appResult extends RootElement {
     if (matchedNumber === numberOfCards) {
       this.querySelector('.result__done').textContent =
         'You did it! Great job!';
-      this.querySelector('.result__done-img').src =
-        '../../images/medal-solid.svg';
+      this.querySelector('.result__done-img').src = './images/medal-solid.svg';
     } else {
       this.querySelector('.result__done').textContent = '';
       this.querySelector('.result__done-img').src = '';
