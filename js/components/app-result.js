@@ -1,13 +1,11 @@
 import RootElement from './app-rootelement.js';
 import PubSub from '../pubsub/pubsub.js';
-//import medal from '../../image/medal-solid.svg';
 
 class appResult extends RootElement {
   constructor() {
     super();
     this.pubsub = PubSub;
     this.renderData();
-    this.numberOfCards = this.pubsub.getData('getNumberOfCards', null);
     this.pubsub.subscribe(
       'MatchedNumber',
       'getMatchedNumber',
@@ -23,6 +21,7 @@ class appResult extends RootElement {
   }
 
   renderData() {
+    var numberOfCards = parseInt(this.pubsub.getData('getNumberOfCards', null));
     this.innerHTML = `
         <p class="result"></p>
         <div class="result__done-container">
@@ -32,11 +31,10 @@ class appResult extends RootElement {
         `;
     var matchedNumber = this.pubsub.getData('getMatchedNumber', 0);
     var roundNumber = this.pubsub.getData('getRoundNumber', 0);
-
     this.querySelector(
       '.result'
     ).textContent = `You got ${matchedNumber} matches within ${roundNumber} rounds!`;
-    if (matchedNumber === this.numberOfCards) {
+    if (matchedNumber === numberOfCards) {
       this.querySelector('.result__done').textContent =
         'You did it! Great job!';
       this.querySelector('.result__done-img').src =
