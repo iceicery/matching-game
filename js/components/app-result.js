@@ -38,7 +38,7 @@ class appResult extends RootElement {
       this.querySelector('.result__done').textContent =
         'You did it! Great job!';
       this.querySelector('.result__done-img').src =
-        '/matching-game/images/medal-solid.svg';
+        '../../images/medal-solid.svg';
     } else {
       this.querySelector('.result__done').textContent = '';
       this.querySelector('.result__done-img').src = '';
